@@ -20,10 +20,6 @@ Jupyter Notebook
 ## Project Structure
 
 data/ → datasets  
-notebooks/ → analysis notebook  
-src/ → reusable functions  
 figures/ → charts
-
-## Example Visualization
-
-![DCI Trend](figures/dci_trend.png)
+notebooks/ → analysis notebook  
+src/ → reusable functions
