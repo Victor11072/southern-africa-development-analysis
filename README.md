@@ -21,5 +21,6 @@ Jupyter Notebook
 
 data/ → datasets  
 figures/ → charts
+
 notebooks/ → analysis notebook  
 src/ → reusable functions
