@@ -1,0 +1,24 @@
+import pandas as pd
+import numpy as np
+
+def compute_dci(df, start_row):
+
+    GDP = df.iloc[[start_row + 0], :]
+    infl = df.iloc[[start_row + 1], :]
+    sch_enrol = df.iloc[[start_row + 2], :]
+    unemp = df.iloc[[start_row + 3], :]
+    pov_hd = df.iloc[[start_row + 5], :]
+    fdi = df.iloc[[start_row + 7], :]
+
+    norm_gdp = (GDP - np.min(GDP.values)) / (np.max(GDP.values) - np.min(GDP.values))
+    norm_infl = 1 - ((infl - np.min(infl.values)) / (np.max(infl.values) - np.min(infl.values)))
+    norm_sch = (sch_enrol - np.min(sch_enrol.values)) / (np.max(sch_enrol.values) - np.min(sch_enrol.values))
+    norm_unemp = 1 - ((unemp - np.min(unemp.values)) / (np.max(unemp.values) - np.min(unemp.values)))
+    norm_pov = (pov_hd - np.min(pov_hd.values)) / (np.max(pov_hd.values) - np.min(pov_hd.values))
+    norm_fdi = (fdi - np.min(fdi.values)) / (np.max(fdi.values) - np.min(fdi.values))
+
+    norm_ind = pd.concat([norm_gdp, norm_infl, norm_sch, norm_unemp, norm_pov, norm_fdi])
+
+    DCI = norm_ind.mean()
+
+    return DCI
