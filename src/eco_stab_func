@@ -1,0 +1,24 @@
+#Economic stability function with the use of Volatility index
+def eco_stab_func(df, start_row, step, countries, col_start=0, col_end=None):
+    
+    values = []
+
+    for i in range(len(countries)):
+        
+        # select the row for that country
+        row_values = df.iloc[start_row + i*step, col_start:col_end]
+        
+        # convert to numeric
+        #row_values = pd.to_numeric(row_values, errors="coerce")
+        
+        # compute volatility
+        volatility = np.std(row_values, ddof=1)
+
+        values.append(volatility)
+
+    result = pd.DataFrame(values, columns=["Volatility"])
+    
+    result["country"] = countries
+    result.set_index("country", inplace=True)
+
+    return result
